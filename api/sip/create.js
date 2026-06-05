@@ -1,6 +1,14 @@
 import { db } from "../../DbHelper";
 
 export default async function handler(req, res) {
+
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
   if (req.method !== "POST") {
     return res.status(405).json({ error: "POST only" });
   }
@@ -14,7 +22,7 @@ export default async function handler(req, res) {
       [sipId, password, server, transport || "udp"]
     );
 
-    const qrUrl = `https://your-domain.vercel.app/zoiper/provision/${sipId}`;
+    const qrUrl = `https://zoipersip.vercel.app/zoiper/provision/${sipId}`;
 
     return res.json({
       success: true,
