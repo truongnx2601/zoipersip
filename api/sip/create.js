@@ -16,29 +16,29 @@ export default async function handler(req, res) {
       return res.status(200).end();
     }
 
-    if (req.method !== "POST") {
-      return res.status(405).json({ error: "POST only" });
-    }
+    // if (req.method !== "POST") {
+    //   return res.status(405).json({ error: "POST only" });
+    // }
 
-    const { sipId, password, server, transport } = req.body;
+    // const { sipId, password, server, transport } = req.body;
 
-    if (!sipId || !password || !server) {
-      return res.status(400).json({ error: "Missing fields" });
-    }
+    // if (!sipId || !password || !server) {
+    //   return res.status(400).json({ error: "Missing fields" });
+    // }
 
-    // =====================
-    // DB INSERT
-    // =====================
-    await db.query(
-      `INSERT INTO sip_accounts (sip_id, password, server, transport)
-       VALUES ($1, $2, $3, $4)`,
-      [sipId, password, server, transport || "udp"]
-    );
+    // // =====================
+    // // DB INSERT
+    // // =====================
+    // await db.query(
+    //   `INSERT INTO sip_accounts (sip_id, password, server, transport)
+    //    VALUES ($1, $2, $3, $4)`,
+    //   [sipId, password, server, transport || "udp"]
+    // );
 
-    return res.status(200).json({
-      success: true,
-      qrUrl: `https://zoipersip.vercel.app/zoiper/provision/${sipId}`
-    });
+    // return res.status(200).json({
+    //   success: true,
+    //   qrUrl: `https://zoipersip.vercel.app/zoiper/provision/${sipId}`
+    // });
 
   } catch (err) {
     console.error("API ERROR:", err);
