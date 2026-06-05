@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/zoiper/provision/(.*)",
+      "destination": "/api/zoiper/provision/$1"
+    }
+  ]
+}
