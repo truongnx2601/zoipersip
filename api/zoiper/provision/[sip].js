@@ -1,4 +1,4 @@
-import { db } from "../../DbHelper";
+import { db } from "../../DbHelper.js";
 
 export default async function handler(req, res) {
   const { sipId } = req.query;
